@@ -1,0 +1,15 @@
+{
+  "short_name": "StartMeet",
+  "name": "StartMeet",
+  "display": "standalone",
+  ​​"orientation": "portrait",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/ico",
+      "sizes": "256x256"
+    }
+  ],
+  "background_color": "#d2ecf1",
+  "start_url": "/?utm_source=homescreen"
+}

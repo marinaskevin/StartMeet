@@ -1,0 +1,8 @@
+<a class="btn" [routerLink]="['/users']">Users</a>
+<a class="btn" [routerLink]="['/events']">Events</a>
+<a class="btn" [routerLink]="['/locations']">Locations</a>
+<a class="btn" [routerLink]="['/partnerships/new']"><u>New</u> Partnership</a>
+<div class="alert alert-info">
+    <h2>Partnerships</h2>
+    <p *ngFor="let partnership of partnerships"><a [routerLink]="['/partnerships/',partnership._id]"></a></p>
+</div>

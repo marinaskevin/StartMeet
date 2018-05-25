@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+*
+{
+    font-family: Buenard;
+}
+html
+{
+    background: url('https://source.unsplash.com/900x1600?city');
+    background-size: cover;
+    background-position: bottom;
+    margin: 0rem;
+}
+container
+{
+    opacity: 0.8;
+}
+body
+{
+    position: relative;
+}
+p
+{
+    margin: 1rem 0rem;
+}
+h2
+{
+    font-family: Satisfy;
+}
+.btn
+{
+    font-family: Satisfy;
+    color: black;
+    background-color: white;
+}
+.btn:hover
+{
+    font-family: Satisfy;
+    color: black;
+    text-decoration: underline;
+    background-color: #FFBB00;
+}
+.alert
+{
+    padding: 1rem;
+}
+input
+{
+    text-align: center;
+    text-align-last: center;
+}
+#title
+{
+    cursor: pointer;
+}
+agm-map {
+    height: 300px;
+}

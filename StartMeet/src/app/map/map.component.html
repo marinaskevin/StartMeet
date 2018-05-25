@@ -1,0 +1,51 @@
+<div class="form-group" style="margin-bottom: 0px">
+  <input
+    placeholder="search for location"
+    autocorrect="off"
+    autocapitalize="off"
+    spellcheck="off"
+    type="text"
+    class="form-control"
+    #search
+    [formControl]="searchControl"
+    size="100">
+</div>
+
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="true"
+  (mapClick)="onSelectLocation($event)">
+  <agm-marker
+    *ngFor="let m of markers;let i=index"
+    (markerClick)="onSelectMarker(m,i)"
+    [latitude]="m.lat"
+    [longitude]="m.lng"
+    [markerDraggable]="m.draggable"
+    [iconUrl]="'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'"
+    (dragEnd)="markerDragEnd(m, $event)">
+    <agm-info-window>
+      <strong><input class="form-control" type="text" [(ngModel)]="m.name" placeholder="What's this place called?"><br><button type="button" class="btn btn-outline-primary" (click)="addLocation(m)">Add this location</button></strong>
+    </agm-info-window>
+  </agm-marker>
+  <agm-marker
+    *ngIf="my_marker"
+    (markerClick)="onSelectMarker(my_marker)"
+    [latitude]="my_marker.lat"
+    [longitude]="my_marker.lng">
+    <agm-info-window>
+      <strong>{{my_marker.name}}</strong>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Address <code>{{addr}}</code></li>
+    <li class="list-group-item">Latitude <code>{{lat}}</code></li>
+    <li class="list-group-item">Longitude <code>{{lng}}</code></li>
+    <li class="list-group-item">Zoom <code>{{zoom}}</code></li>
+  </ul>
+</div>

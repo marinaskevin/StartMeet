@@ -1,0 +1,24 @@
+<a class="btn" [routerLink]="['/users']">Users</a>
+<a class="btn" [routerLink]="['/events']">Events</a>
+<a class="btn" [routerLink]="['/locations']">Locations</a>
+<!-- <a class="btn" [routerLink]="['/partnerships']">Partnerships</a> -->
+
+<div class="alert alert-info" *ngIf="user">
+  <div class="col-xs-6">
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+  </div>
+
+  <div *ngIf="events && events.length > 0">
+      <h4>Events submitted by {{ user.first_name }}</h4>
+      <p *ngFor="let event of events"><a [routerLink]="['/events/',event._id]">{{event.name}}</a></p>
+  </div>
+  <div *ngIf="events && events.length == 0">
+      <h4>{{ user.first_name }} has not submitted any events!</h4>
+  </div>
+  
+  <!-- <div *ngIf="_httpService.user && user._id != _httpService.user._id" class="col-xs-6 pull-right"> -->
+    <!-- <a class="btn" (click)="likeUser()" style="display: block">Like {{ user.first_name }}</a> -->
+    <!-- <a class="btn" (click)="followUser()" style="display: block">Follow {{ user.first_name }}</a>
+    <a class="btn" (click)="shareLocation()" style="display: block">Share your location with {{ user.first_name }}</a> -->
+  <!-- </div> -->
+</div>

@@ -1,0 +1,13 @@
+<a class="btn" [routerLink]="['/users/new']"><u>New</u> User</a>
+<a class="btn" [routerLink]="['/events']">Events</a>
+<a class="btn" [routerLink]="['/locations']">Locations</a>
+<!-- <a class="btn" [routerLink]="['/partnerships']">Partnerships</a> -->
+<div class="alert alert-info">
+    <h2>Users</h2>
+    <p *ngFor="let user of users">
+        <a [routerLink]="['/users/',user._id]">{{ user.first_name }} {{ user.last_name }}</a>
+        <span *ngIf="_httpService.user && user._id == _httpService.user._id" class="text-muted"> ← That's you!</span>
+    </p>
+    <p *ngIf="!users">Loading users....</p>
+    <p *ngIf="users && users.length == 0">Be the first to add a new user! <a [routerLink]="['/users/new']">Click here to begin!</a></p>
+</div>

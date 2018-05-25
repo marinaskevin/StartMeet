@@ -1,0 +1,15 @@
+<h2 class="text-center">Login</h2>
+<div class="container alert-primary">
+  <form class="form-group text-center">
+      <label class="form-label" for="email">Email: </label>
+      <input class="form-control col-xs-8" id="email" name="email" type="email" [(ngModel)]="email">
+      <label class="form-label" for="password">Password: </label>
+      <input class="form-control col-xs-8" id="password" name="password" type="password" [(ngModel)]="password">
+      <div class="btn-group pull-right btn-group-justified" role="group">
+          <button type="button" class="btn" [routerLink]="['/users/new']">Register as New User</button>
+          <button type="button" class="btn" (click)="exitLogin()">Cancel</button>
+          <button type="button" class="btn" (click)="login()">Submit</button>
+      </div>
+    </form>
+</div>
+<div *ngIf="errors" class="text-danger"><p *ngFor="let error of errors">{{error}}</p></div>

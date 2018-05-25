@@ -1,0 +1,34 @@
+<a class="btn" [routerLink]="['/users']">Users</a>
+<a class="btn" [routerLink]="['/events']"><u>Back to</u> Events</a>
+<a class="btn" [routerLink]="['/locations']">Locations</a>
+<!-- <a class="btn" [routerLink]="['/partnerships']">Partnerships</a> -->
+<div class="alert alert-info" *ngIf="name">
+  <h2>{{name}}</h2>
+
+  <p>Description: {{description}}</p>
+  <p>Start time: {{start_time_string}}</p>
+  <p *ngIf="end_time">End time: {{end_time_string}}</p>
+  <div *ngIf="location">
+    <h4>Where: {{location.name}}</h4>
+    <a href="https://www.google.com/maps/dir/?api=1&destination={{lat}},{{lng}}" target="_blank">Get Directions</a>
+
+    <agm-map
+      [latitude]="lat"
+      [longitude]="lng"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="true">
+      <agm-marker
+        *ngIf="location"
+        [latitude]="lat"
+        [longitude]="lng">
+        <agm-info-window>
+          <strong>{{name}} & </strong>
+        </agm-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+
+  <p>Submitted by: <a [routerLink]="['/users',submitted_by._id]">{{submitted_by.first_name}} {{submitted_by.last_name}}</a></p>
+
+</div>

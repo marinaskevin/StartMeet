@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="row">
+    <div id="title" class="col-sm-6" (click)="goHome()">
+      <h1><i class="fas fa-home" *ngIf="_httpService.hover_over_logo"></i><i class="fas fa-location-arrow" *ngIf="!_httpService.hover_over_logo"></i>StartMeet</h1>
+    </div>
+    <div class="col-sm-6 text-right">
+      <span *ngIf="_httpService.logged_in" class="btn" style="position: absolute; bottom: 0; right: 0">
+        Welcome {{ _httpService.user.first_name }}! <span class="text-muted"><a (click)="logOut()">Logout</a></span>
+      </span>
+      <span *ngIf="!_httpService.logged_in && !_httpService.logging_in" class="btn" style="position: absolute; bottom: 0; right: 0">
+        <a (click)="logIn()">Login</a>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="alert alert-info text-center">
+
+  <app-login *ngIf="_httpService.logging_in"></app-login>
+  <router-outlet></router-outlet>
+
+</div>

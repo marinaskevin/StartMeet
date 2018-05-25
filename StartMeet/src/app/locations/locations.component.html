@@ -1,0 +1,10 @@
+<a class="btn" [routerLink]="['/users']">Users</a>
+<a class="btn" [routerLink]="['/events']">Events</a>
+<a class="btn" [routerLink]="['/locations/new']"><u>New</u> Location</a>
+<!-- <a class="btn" [routerLink]="['/partnerships']">Partnerships</a> -->
+<div class="alert alert-info">
+    <h2>Locations</h2>
+    <p *ngFor="let location of locations"><a [routerLink]="['/locations/',location._id]">{{location.name}}</a></p>
+    <p *ngIf="!locations">Loading locations....</p>
+    <p *ngIf="locations && locations.length == 0">Be the first to add a new location! <a [routerLink]="['/locations/new']">Click here to begin!</a></p>
+</div>

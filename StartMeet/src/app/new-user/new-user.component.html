@@ -1,0 +1,21 @@
+<h2 class="text-center">Register New User</h2>
+<div class="container alert-primary">
+  <form class="form-group text-center">
+      <label class="form-label" for="first_name">First Name: </label>
+      <input class="form-control col-xs-8" id="first_name" name="first_name" type="text" [(ngModel)]="first_name">
+      <label class="form-label" for="last_name">Last Name: </label>
+      <input class="form-control col-xs-8" id="last_name" name="last_name" type="text" [(ngModel)]="last_name">
+      <label class="form-label" for="email">Email: </label>
+      <input class="form-control col-xs-8" id="email" name="email" type="text" [(ngModel)]="email">
+      <label class="form-label" for="password">Password: </label>
+      <input class="form-control col-xs-8" id="password" name="password" type="password" [(ngModel)]="password" minlength="8" #pwValidation="ngModel">
+      <label class="form-label" for="cpassword">Confirmation Password: </label>
+      <input class="form-control col-xs-8" id="cpassword" name="cpassword" type="password" [(ngModel)]="cpassword" minlength="8" #cpwValidation="ngModel">
+      <div class="btn-group pull-right btn-group-justified" role="group">
+          <button type="button" class="btn" [routerLink]="['/home']">Cancel</button>
+          <button type="button" class="btn" (click)="register()">Submit</button>
+      </div>
+    </form>
+</div>
+<div *ngIf="err_list" class="text-center text-danger"><p *ngFor="let error of err_list">{{error}}</p></div>
+<div *ngIf="!err_list && (pwValidation.errors || cpwValidation.errors)" class="text-center text-info"><p>Password must have at least 8 characters.</p></div>
