@@ -27,7 +27,9 @@
     "@angular/cli": "^6.0.3"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "bcrypt-as-promised": "^1.1.0",
+    "bcrypt-nodejs-as-promised": "^1.0.4",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "google-auth-library": "^1.5.0",
