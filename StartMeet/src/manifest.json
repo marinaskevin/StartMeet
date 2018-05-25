@@ -2,7 +2,7 @@
   "short_name": "StartMeet",
   "name": "StartMeet",
   "display": "standalone",
-  ​​"orientation": "portrait",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "favicon.ico",

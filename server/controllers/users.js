@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-as-promised');
+const bcrypt = require('bcrypt-node');
 const User = mongoose.model('User');
 
 module.exports = {
@@ -71,8 +71,25 @@ module.exports = {
 					}
 					else
 					{
-						bcrypt.hash(req.body.password, 10)
-						.then(hashed_password => {
+						bcrypt.genSalt(10, (err, salt) => { // generate random salt
+							if (err) {
+                                                                errors.push(err);
+                                                                errors.push("salting error");
+                                                                res.json({ message: "Error", error: errors });
+							}
+						bcrypt.hash(req.body.password,salt,null,function(err,hashed_password){
+							if(err)
+							{
+                                                                for(var key in err.errors)
+                                                                {
+                                                                        errors.push(err.errors[key].message);
+                                                                }
+								errors.push(err);
+								errors.push("hash password error");
+								res.json({ message: "Error", error: errors });
+							}
+							else
+							{
 							var user = new User({
 								gid: {
 									id_type: req.body.id_type,
@@ -106,12 +123,9 @@ module.exports = {
 									})
 								}
 							})
+							}
 						})
-						.catch(error => {
-							errors.push(error)
-							errors.push("hash password error");
-							res.json({ message: "Error", error: errors });
-						});
+						})
 					}
 				}
 			}
@@ -128,7 +142,7 @@ module.exports = {
 		}
 		else
 		{
-		  User.findOne({email: req.body.email}).select('+gid.id_string').exec(function(err,_user){
+			User.findOne({email: req.body.email}).select('+gid.id_string').exec(function(err,_user){
 				if(err)
 				{
 					for(var key in err.errors)
@@ -144,10 +158,16 @@ module.exports = {
 				}
 				else
 				{
-					
-					bcrypt.compare(req.body.password,_user.gid.id_string)
-					.then( result => {
-						if(!result)
+					bcrypt.compare(req.body.password,_user.gid.id_string,(err,result) => {
+						if(err)
+						{
+							for(var key in err.errors)
+							{
+                	                        	        errors.push(err.errors[key].message);
+							}
+							res.json({ message: "Error", error: errors });
+						}
+						else if(!result)
 						{
 							errors.push("Username and/or password does not match.");
 							res.json({ message: "Error", error: errors });
@@ -159,12 +179,8 @@ module.exports = {
 							});
 						}
 					})
-					.catch( error => {
-						errors.push("Username and/or password does not match.");
-						res.json({ message: "Error", error: errors });
-				}) 
 				}
-		  })
+			})
 		}
 	},
 	updateUser: function(req,res,id,user_data) {
