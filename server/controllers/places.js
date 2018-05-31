@@ -93,7 +93,7 @@ module.exports = {
 				{
 					errors.push(err.errors[key].message);
 				}
-				res.json({ message: meesage, error: errors });
+				res.json({ message: message, error: errors });
 			}
 			else
 			{

@@ -57,6 +57,11 @@ module.exports = {
 		})
 	},
 	newEvent: function(req,res,event_data) {
+		var errors = [];
+		if (!(req.body.location.match(/^[0-9a-fA-F]{24}$/))) {
+			errors.push("Please select a location.");
+			res.json({ message: "Error", error: errors });
+		}
 		var event_data = {
 			name: req.body.name,
 			description: req.body.description,
@@ -70,7 +75,6 @@ module.exports = {
 			if(err)
 			{
 				console.log("Error in adding event",err);
-				var errors = [];
 				for(var key in err.errors)
 				{
 					errors.push(err.errors[key].message);
@@ -113,7 +117,7 @@ module.exports = {
 				{
 					errors.push(err.errors[key].message);
 				}
-				res.json({ message: meesage, error: errors });
+				res.json({ message: message, error: errors });
 			}
 			else
 			{
