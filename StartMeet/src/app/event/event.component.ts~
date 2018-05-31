@@ -68,10 +68,14 @@ export class EventComponent implements OnInit {
         this.description = data.description;
 
         this.start_time = new Date(data.start_time);
-        this.start_time_string = this.start_time.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month: 'long',day: 'numeric',timeZone: 'UTC'}) + ' @ ' + this.start_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).substr(0,this.start_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length-6) + this.start_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).substr(this.start_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length-3,this.start_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length);
+        var start_time = this.start_time.toLocaleTimeString();
+        start_time = this.trimTime(start_time.substr(0,start_time.length-3))+start_time.substr(start_time.length-3,start_time.length);
+        this.start_time_string = this.month[this.start_time.getMonth()] + ' ' + this.start_time.getDate() + ', ' + this.start_time.getFullYear() + ' @ ' + start_time;
 
         this.end_time = new Date(data.end_time);
-        this.end_time_string = this.end_time.toLocaleDateString('en-US',{weekday: 'long', year: 'numeric', month: 'long',day: 'numeric',timeZone: 'UTC'}) + ' @ ' + this.end_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).substr(0,this.end_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length-6) + this.end_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).substr(this.end_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length-3,this.end_time.toLocaleTimeString('en-US',{timeZone: 'UTC'}).length);
+        var end_time = this.end_time.toLocaleTimeString();
+        end_time = this.trimTime(end_time.substr(0,end_time.length-3))+end_time.substr(end_time.length-3,end_time.length);
+        this.end_time_string = this.month[this.end_time.getMonth()] + ' ' + this.end_time.getDate() + ', ' + this.end_time.getFullYear() + ' @ ' + end_time;
 
         this.liked_by = data.liked_by;
         this.visited_by = data.visited_by;

@@ -10,7 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title: String;
 
-  constructor(private _httpService: HttpService,
+  constructor(public _httpService: HttpService,
     private _route: ActivatedRoute,
     private _router: Router) { }
 

@@ -9,7 +9,7 @@
       <label class="form-label" for="name">Event Name: </label>
       <input class="form-control col-xs-8" id="name" name="name" type="text" [(ngModel)]="name" required minlength="3">
       <label class="form-label" for="description">Event Description: </label>
-      <textarea class="form-control col-xs-8" id="description" name="description" [(ngModel)]="description" rows="5" required minlength="10"></textarea>
+      <input class="form-control col-xs-8" id="description" name="description" type="text" [(ngModel)]="description" required minlength="10">
       <label class="form-label" for="start_time">Event Start Time: </label>
       <input class="form-control col-xs-8" id="start_time" name="start_time" type="datetime-local" [(ngModel)]="start_time" required>
       <label class="form-label" for="end_time">Event End Time: </label>

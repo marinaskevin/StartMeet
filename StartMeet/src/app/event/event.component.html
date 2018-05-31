@@ -16,6 +16,8 @@
       [latitude]="lat"
       [longitude]="lng"
       [zoom]="zoom"
+      [fullscreenControl]="true"
+      [mapTypeControl]="true"
       [disableDefaultUI]="false"
       [zoomControl]="true">
       <agm-marker
@@ -23,7 +25,7 @@
         [latitude]="lat"
         [longitude]="lng">
         <agm-info-window>
-          <strong>{{name}} & </strong>
+          <strong>{{name}}<br>@<br>{{location.name}}</strong>
         </agm-info-window>
       </agm-marker>
     </agm-map>

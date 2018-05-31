@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partnerships.component.css']
 })
 export class PartnershipsComponent implements OnInit {
+  partnerships: any;
 
   constructor() { }
 
