@@ -19,7 +19,7 @@ sudo npm install
 Build the Angular project:
 
 ```
-ng build
+sudo ng build
 ```
 
 In a seperate terminal tab/window, have mongod running:
@@ -32,7 +32,7 @@ Run server.js in the StartMeet project folder using node, nodemon, or pm2, etc.:
 
 ```
 cd ..
-node server.js
+sudo node server.js
 ```
 
 Navigate to localhost:8000 in your internet browser.
